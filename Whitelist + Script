@@ -18,7 +18,7 @@ local function checkPlayer(player)
         print("✅ Acceso concedido a " .. player.Name .. ". Cargando Outfits...")
         
         local success, err = pcall(function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/SpiriiDeveloper/CopyOutfits/refs/heads/main/Outfits"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SpiriiDeveloper/CopyOutfits/refs/heads/main/Outfit"))()
         end)
 
         if not success then
