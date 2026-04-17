@@ -1,0 +1,40 @@
+-- ────────────────────────────────────────────────────────────────
+-- CONFIGURACIÓN DE WHITELIST
+-- ────────────────────────────────────────────────────────────────
+local allowedUsers = {
+    [4348262147] = true, -- Tu ID
+    [10388681649] = true,    -- ID de un amigo
+}
+
+local Players = game:GetService("Players")
+
+-- Función principal de verificación
+local function checkPlayer(player)
+    if not allowedUsers[player.UserId] then
+        -- Si NO está en la lista, lo expulsa
+        player:Kick("\n[ACCESO DENEGADO]\nNo tienes permiso para ejecutar este script.\nContactate con: Spirii")
+    else
+        -- Si ESTÁ en la lista, ejecuta el script externo
+        print("✅ Acceso concedido a " .. player.Name .. ". Cargando Outfits...")
+        
+        local success, err = pcall(function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SpiriiDeveloper/CopyOutfits/refs/heads/main/Outfits"))()
+        end)
+
+        if not success then
+            warn("❌ Error al cargar el script externo: " .. tostring(err))
+        end
+    end
+end
+
+-- ────────────────────────────────────────────────────────────────
+-- EJECUCIÓN
+-- ────────────────────────────────────────────────────────────────
+
+-- Detectar nuevos jugadores
+Players.PlayerAdded:Connect(checkPlayer)
+
+-- Verificar a los jugadores que ya están en la partida
+for _, player in ipairs(Players:GetPlayers()) do
+    checkPlayer(player)
+end
