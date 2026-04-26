@@ -5,6 +5,8 @@ local allowedUsers = {
     [4348262147] = true, -- Tu ID
     [10388681649] = true,    -- ID de Nova
     [9623708334] = true,    -- ID de Dark
+    [9998164384] = true, --Daye
+    [9375398535] = true, --Erick
 }
 
 local Players = game:GetService("Players")
